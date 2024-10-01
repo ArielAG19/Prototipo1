@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Página de Inicio";  // O el título que desees
+}
+
+<h1>Bienvenido a la Cantina</h1>
+
+<nav>
+    <ul>
+        <li>
+            <a href="#" class="menu-toggle" onclick="toggleSubmenu(event)">Reserva</a>
+            <ul class="submenu" style="display: none;">
+                <!-- Comienza oculto -->
+                <li><a href="@Url.Action("CrearReserva", "Reserva", new { empleadoId = 1, consumoId = 1 })">Crear Reserva</a></li>
+                <li><a href="@Url.Action("ListarReservas", "Reserva")">Ver Reservas Realizadas</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Menú</a></li>
+        <li><a href="#">Créditos</a></li>
+        <li><a href="#">Perfil</a></li>
+    </ul>
+</nav>
+
+<p>Selecciona una opción del menú.</p>
+
+<!-- Enlace para crear una reserva de prueba -->
+<p>
+    <a href="@Url.Action("CrearReserva", "Reserva", new { empleadoId = 2, consumoId = 2 })">Crear Reserva de Prueba</a>
+</p>
+
+<!-- Enlace para listar las reservas -->
+<p>
+    <a href="@Url.Action("ListarReservas", "Reserva")">Ver Reservas Realizadas</a>
+</p>
+
+<script>
+    function toggleSubmenu(event) {
+        event.preventDefault(); // Evitar la acción predeterminada del enlace
+        const submenu = event.target.nextElementSibling; // Obtener el submenú correspondiente
+        if (submenu.style.display === "none" || submenu.style.display === "") {
+            submenu.style.display = "block"; // Mostrar el submenú
+        } else {
+            submenu.style.display = "none"; // Ocultar el submenú
+        }
+    }
+
+    // Cerrar el submenú si se hace clic fuera de él
+    document.addEventListener('click', function (event) {
+        const isClickInside = document.querySelector('nav').contains(event.target);
+        const submenu = document.querySelector('.submenu');
+        if (!isClickInside && submenu.style.display === "block") {
+            submenu.style.display = "none"; // Cerrar el submenú
+        }
+    });
+</script>
+
+<style>
+    nav {
+        background-color: #f8f8f8; /* Fondo del menú */
+        padding: 10px; /* Espaciado alrededor del menú */
+    }
+
+        nav ul {
+            list-style-type: none; /* Quitar viñetas */
+            padding: 0; /* Sin relleno */
+            margin: 0; /* Sin márgenes */
+        }
+
+        nav > ul > li {
+            display: inline-block; /* Alinear elementos en línea */
+            position: relative; /* Para el posicionamiento del submenú */
+            margin-right: 20px; /* Espacio entre los elementos del menú */
+        }
+
+            nav > ul > li > a {
+                text-decoration: none; /* Sin subrayado en los enlaces */
+                padding: 10px 15px; /* Espaciado interno de los enlaces */
+                color: #333; /* Color del texto */
+                border: 1px solid transparent; /* Para el borde del enlace */
+                transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+            }
+
+            nav > ul > li:hover > a {
+                background-color: #ddd; /* Fondo al pasar el mouse */
+                border-color: #bbb; /* Color del borde al pasar el mouse */
+            }
+
+        nav ul li ul {
+            display: none; /* Ocultar submenú por defecto */
+            position: absolute; /* Posicionar el submenú */
+            top: 100%; /* Debajo del menú principal */
+            left: 0; /* Alineado a la izquierda */
+            background-color: #fff; /* Fondo del submenú */
+            border: 1px solid #ccc; /* Borde del submenú */
+            z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+        }
+
+            nav ul li ul li {
+                display: block; /* Alinear elementos del submenú en bloque */
+                margin: 5px 0; /* Espacio entre los elementos del submenú */
+            }
+
+                nav ul li ul li a {
+                    padding: 10px 15px; /* Espaciado interno del submenú */
+                    color: #333; /* Color del texto en el submenú */
+                }
+
+                    nav ul li ul li a:hover {
+                        background-color: #f0f0f0; /* Fondo al pasar el mouse en submenú */
+                    }
+</style>
+

@@ -1,0 +1,57 @@
+nav {
+    background-color: #f8f8f8; /* Fondo del menú */
+    padding: 10px; /* Espaciado alrededor del menú */
+}
+
+nav ul {
+    list-style-type: none; /* Quitar viñetas */
+    padding: 0; /* Sin relleno */
+    margin: 0; /* Sin márgenes */
+}
+
+nav > ul > li {
+    display: inline-block; /* Alinear elementos en línea */
+    position: relative; /* Para el posicionamiento del submenú */
+    margin-right: 20px; /* Espacio entre los elementos del menú */
+}
+
+nav > ul > li > a {
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    padding: 10px 15px; /* Espaciado interno de los enlaces */
+    color: #333; /* Color del texto */
+    border: 1px solid transparent; /* Para el borde del enlace */
+    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+}
+
+nav > ul > li:hover > a {
+    background-color: #ddd; /* Fondo al pasar el mouse */
+    border-color: #bbb; /* Color del borde al pasar el mouse */
+}
+
+nav ul li ul {
+    display: none; /* Ocultar submenú por defecto */
+    position: absolute; /* Posicionar el submenú */
+    top: 100%; /* Debajo del menú principal */
+    left: 0; /* Alineado a la izquierda */
+    background-color: #fff; /* Fondo del submenú */
+    border: 1px solid #ccc; /* Borde del submenú */
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+}
+
+nav ul li.active ul {
+    display: block; /* Mostrar el submenú si el padre está activo */
+}
+
+nav ul li ul li {
+    display: block; /* Alinear elementos del submenú en bloque */
+    margin: 5px 0; /* Espacio entre los elementos del submenú */
+}
+
+nav ul li ul li a {
+    padding: 10px 15px; /* Espaciado interno del submenú */
+    color: #333; /* Color del texto en el submenú */
+}
+
+nav ul li ul li a:hover {
+    background-color: #f0f0f0; /* Fondo al pasar el mouse en submenú */
+}

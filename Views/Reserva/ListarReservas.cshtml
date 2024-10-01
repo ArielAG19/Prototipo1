@@ -1,0 +1,31 @@
+﻿@model Prototipo1.ViewModels.ListarReservasViewModel
+
+<h2>Reservas Realizadas</h2>
+<table>
+    <tr>
+        <th>Empleado</th>
+        <th>Tipo de Consumo</th>
+        <th>Fecha</th>
+    </tr>
+    @if (Model.Reservas != null && Model.Reservas.Any())
+    {
+        foreach (var reserva in Model.Reservas)
+        {
+            var empleado = Model.Empleados.FirstOrDefault(e => e.Id == reserva.EmpleadoId);
+            var consumo = Model.Consumos.FirstOrDefault(c => c.Id == reserva.ConsumoId);
+
+            <tr>
+                <td>@empleado?.Nombre </td>  <!-- Muestra el nombre del empleado o deja el campo en blanco -->
+                <td>@consumo?.Tipo </td>     <!-- Muestra el tipo de consumo o deja el campo en blanco -->
+
+                <td>@reserva.Fecha.ToString("g")</td> <!-- Formato de fecha general -->
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="3">No hay reservas disponibles.</td> <!-- Mensaje si no hay reservas -->
+        </tr>
+    }
+</table>
